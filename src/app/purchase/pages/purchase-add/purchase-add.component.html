@@ -1,0 +1,25 @@
+<div class="border border-danger">
+    <form class="form-group m-2" [formGroup]="PurchaseForm">
+        <div class="m-10">
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Название товара"
+                [ngClass]="{'has-error':PurchaseForm.get('name')?.invalid && PurchaseForm.get('name')?.touched}">
+            <small class="form-text text-muted">Обязательное поле длиной в 100 символов</small>
+
+            <input type="number" class="form-control" id="amount" formControlName="amount" placeholder="Количество"
+                [ngClass]="{'has-error':PurchaseForm.get('amount')?.invalid && PurchaseForm.get('amount')?.touched}">
+            <small class="form-text text-muted">Обязательное поле длиной в 100 символов</small>
+        </div>
+        <p>
+            <select class=" form-select w-25" formControlName="status" *ngIf="id">
+                <option value="Не куплено" >Не куплено</option>
+                <option value="Куплено">Куплено</option>
+            </select>
+        </p>
+        <div><button type="submit" class="btn btn-primary mb-2" [disabled]="PurchaseForm.invalid"
+                (click)="create()">Добавить</button></div>
+
+        <div><button type="button" class="btn btn-danger mb-2" *ngIf="id"
+                (click)="delete()">Удалить</button></div>
+
+
+    </form>

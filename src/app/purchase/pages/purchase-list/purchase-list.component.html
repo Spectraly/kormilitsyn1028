@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-primary my-2" (click)="linkToAdd()">Добавить</button>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th [style.width]="'50%'">Тип</th>
+                    <th [style.width]="'30%'">Количество</th>
+                    <th [style.width]="'10%'">Редактировать</th>
+                    <th [style.width]="'10%'">Куплено/Не куплено</th>
+                </tr>
+            </thead>
+            <tbody>
+                <div class="my-1">Не куплено</div>
+                <tr *ngFor="let purchase of purchases" class="col-3" id="purchases">
+                    <ng-container *ngIf="purchase.status == 'Не куплено'">
+                        <td class="bg-success">{{purchase.name}}</td>
+                        <td class="bg-success">{{purchase.amount}}</td>
+                        <td class="bg-success"><button class="btn btn-primary"
+                                (click)="linkToAdd(purchase.id)">Редактировать</button></td>
+                        <td class="bg-success"><button class="btn btn-primary"
+                                (click)="change(purchase,purchase.id)">Сменить</button></td>
+                    </ng-container>
+                </tr>
+
+                <div class="my-1">Куплено</div>
+                <tr *ngFor="let purchase of purchases" class="col-3" id="purchases">
+                    <ng-container *ngIf="purchase.status == 'Куплено'">
+                        <td>{{purchase.name}}</td>
+                        <td>{{purchase.amount}}</td>
+                        <td><button class="btn btn-primary" (click)="linkToAdd(purchase.id)">Редактировать</button></td>
+                        <td><button class="btn btn-primary"
+                                (click)="change(purchase,purchase.id)">Сменить</button></td>
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
